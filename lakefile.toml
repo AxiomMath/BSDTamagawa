@@ -1,0 +1,31 @@
+name = "BSDTamagawa"
+defaultTargets = ["BSDTamagawa"]
+
+[leanOptions]
+pp.unicode.fun = true
+autoImplicit = false
+relaxedAutoImplicit = false
+maxSynthPendingDepth = 3
+
+# Mathlib's standard linter set. The `weak.` prefix means Lake will not fail if a
+# revision does not define the option. Enabling it here is what makes the
+# mechanically-enforceable half of the style rules enforced from now on.
+weak.linter.mathlibStandardSet = true
+
+# The Mathlib pin (tag v4.35.0-rc3) matches `lean-toolchain` (leanprover/lean4:v4.35.0-rc3).
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "c55e6e786f49471c72fbddbec5415808896aec1e"
+
+[[lean_lib]]
+name = "BSDTamagawa"
+
+# The comparator pair. Deliberately NOT in defaultTargets: `Challenge` carries a
+# permanent `sorry` (its statements are the artifact), and `lake lint` derives its
+# scope from the default targets. The comparator builds both modules itself.
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"
